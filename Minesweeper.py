@@ -31,7 +31,7 @@ def tagging(a, b): # every square should have value, that is a number of adjacen
 		for i in nbgh:
 			grid[i[0]][i[1]] += 1
 
-def cls():
+def cls(): #refresh after every action
     os.system('cls' if os.name=='nt' else 'clear')
     
 def showplayergrid(rows, columns): # way to print grid in console
@@ -45,6 +45,7 @@ rows = 20 #16
 columns = 40 #30
 bombs = 99 #99
 grid = [[0 for x in range(columns)] for y in range(rows)]
+
 # RANDOMLY GENERATING BOMBS
 m=0
 while m < bombs:
@@ -54,11 +55,13 @@ while m < bombs:
 		grid[x1][y1] = 9
 		m = m+1
 	else:
-		pass		
+		pass	
+			
 # TAGGING BOMBS' NEIGHBOURHOOD
 for a in range(rows):
 	for b in range(columns):
 		tagging(a, b)
+		
 # CORRECTING BOMBS' VALUES			
 for a in range(rows):
 	for b in range(columns):
@@ -68,9 +71,11 @@ for a in range(rows):
 #MAKING PLAYERGRID
 playergrid = [['.' for x in range (columns)] for y in range (rows)]
 checkedzero = [[0 for x in range (columns)] for y in range (rows)]
+
+# PLAYING reveal, tag bomb or untag bomb
 while True:	
 	cls()
-	showplayergrid(rows, columns) 	#showchecked(rows, columns) 	#showgrid(rows, columns) #usun 	#showgrid(rows, columns) #Stanislaw Puchala
+	showplayergrid(rows, columns)
 	action = input('>>> ')
 	action = action.split(' ')
 	try:
